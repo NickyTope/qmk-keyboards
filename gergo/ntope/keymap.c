@@ -13,12 +13,18 @@
 #define NUMB 2 // numbers/motion
 #define ARRW 3 // numbers/motion
 
-// Blank template at the bottom
-
-enum customKeycodes {
-	URL  = 1
+enum combos {
+  LCOLON_ENTER,
+  DF_TAB,
 };
 
+const uint16_t PROGMEM lc_combo[] = {KC_L, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM df_combo[] = {KC_D, KC_F, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+  [LCOLON_ENTER] = COMBO(lc_combo, KC_ENT),
+  [DF_TAB] = COMBO(df_combo, KC_TAB)
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
