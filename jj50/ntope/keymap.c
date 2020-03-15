@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 enum layers {
   BASE,
   ARRW,
+  SYMB,
   FN
 };
 
@@ -94,11 +95,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [BASE] = LAYOUT( \
-        KC_ESC,	 KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL,       \
+        KC_ESC,	 KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,       \
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,      \
         MT(MOD_LCTL, KC_BSPC), KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,      \
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT,		\
-        MO(FN), KC_LCTL, MT(MOD_LALT, KC_ENT), KC_2 ,KC_SPC,KC_SPC,LT(ARRW, KC_SPC),KC_LGUI, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT       \
+        MO(FN), KC_LCTL, MT(MOD_LALT, KC_ENT), KC_2 ,KC_SPC,LT(SYMB, KC_SPC),LT(ARRW, KC_SPC),KC_LGUI, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT       \
     ),
 
 	
@@ -108,6 +109,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        _______, KC_F11,  KC_F12,  _______, _______, _______, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, _______, _______,  \
        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  \
        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
+    ),
+	
+    [SYMB] = LAYOUT( \
+       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_DEL, \
+       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+       _______, _______, _______, _______, _______, _______, _______, KC_LBRC, KC_RBRC, _______, _______, _______, \
+       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
     [FN] = LAYOUT( \
