@@ -122,10 +122,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
   case TG_ENC:
     if (record->event.pressed) {
-      // when keycode QMKBEST is pressed
+      // keydown
       alt_enc = !alt_enc;
     } else {
-      // when keycode QMKBEST is released
+      // keyup
     }
     break;
   }
