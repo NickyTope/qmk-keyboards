@@ -1,28 +1,16 @@
-fivethirteen keyboard firmware
-======================
+## Labor keyboard by ntope
 
-## Quantum MK Firmware
+40% split with encoders
 
-For the full Quantum feature list, see [the parent readme.md](/doc/README.md).
+Credits to germ at gboards.ca for helping me see the light. I love the gergo I bought from him except its slightly too big for my hands, the issues I have had with I believe are fixed with the gergoplex and you should buy one of those instead of going down this path. I know he would hate to see the big ass Arduinos hanging off this thing, one step at a time..
 
-## Building
+Artwork and inspiration from Aesop Rock.
 
-Download or clone the whole firmware and navigate to the keyboards/handwired/fivethirteen folder.
-Once your dev env is setup, you'll be able to type `make` to generate your .hex - you can then use
-the Teensy Loader to program your .hex file.
+| Excerpt from his song Labor on the album Labor Days
 
-Depending on which keymap you would like to use, you will have to compile slightly differently.
+Fantastic planet urchin putting work in
+Searching for pertinent verse minus the murderous diversion
+Apologies won't lure me to the communal sob story
+Nor will I sacrifice live style to benefit jury temperament
 
-### Default
-
-To build with the default keymap, simply run `make`.
-
-### Other Keymaps
-
-To build the firmware binary hex file with a keymap just do `make` with `keymap` option like:
-
-```
-$ make keymap=[default|jack|<name>]
-```
-
-Keymaps follow the format **__keymap.c__** and are stored in folders in the `keymaps` folder, eg `keymaps/my_keymap/`
+| I never understood most of these lyrics when I heard them but that last line always stuck with me. If you belive the annotations from genius.com, he is encouraging himself to stay on track, embrace his differences and be ruthless in doing so.

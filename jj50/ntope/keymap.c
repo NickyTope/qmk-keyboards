@@ -31,9 +31,22 @@ enum custom_keycodes {
   MYRGB_TG = SAFE_RANGE
 };
 
+enum combo_codes {
+                  LCOLON_ENTER,
+                  DF_TAB,
+                  
+};
+
 bool rgbinit = true;
 bool rgbon = true;
 
+const uint16_t PROGMEM lc_combo[] = {KC_L, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM df_combo[] = {KC_D, KC_F, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+                                   [LCOLON_ENTER] = COMBO(lc_combo, KC_ENT),
+                                   [DF_TAB] = COMBO(df_combo, KC_TAB)
+};
 const uint8_t RGBLED_RAINBOW_SWIRL_INTERVALS[] PROGMEM = {1,5,5}; //only using the first one
 
 void keyboard_post_init_user(void) {
