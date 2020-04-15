@@ -36,6 +36,7 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Base layer
   *  CTBS = Control (hold), Backspace (tap)
+  *  WINDEL = Win (hold), Delete (tap)
   *  SHENT = Shift (hold), Enter (tap)
   *  SYMESC = Symbols (hold), Esc (tap)
   *  NUMSPC = Numbers (hold), Space (tap)
@@ -48,23 +49,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * |SHFT |  Z   |  X   |  C   |  V   |  B   |             |   N  |  M   |  ,   |  .   |  / ? |SHENT|
   * `-----+------+------+------+------+------'             `------+------+------+------+------+-----'
   *             .------.   .------.   .------. .----..----. .------.   .------.   .------.
-  *             | WIN  |   |SYMESC|   |NUMSPC| | TG || TG | |ARWSPC|   | ALT  |   | WIN  |
+  *             |WINDEL|   |SYMESC|   |NUMSPC| | TG || TG | |ARWSPC|   | ALT  |   | WIN  |
   *             '------'   '------'   '------' '----''----' '------'   '------'   '------'
   */
 [BASE] = LAYOUT_labor(
       KC_ESC,      KC_Q,      KC_W,  KC_E,   KC_R,   KC_T, KC_Y,    KC_U, KC_I, KC_O,   KC_P,    KC_BSPC,
       MT(MOD_LCTL, KC_BSPC),  KC_A,  KC_S,   KC_D,   KC_F, KC_G, KC_H,    KC_J, KC_K, KC_L,   KC_SCLN, KC_QUOT,
       KC_LSFT,     KC_Z,      KC_X,  KC_C,   KC_V,   KC_B, KC_N, KC_M,    KC_COMM, KC_DOT, KC_SLSH, MT(MOD_RSFT, KC_ENT),
-      KC_LGUI, LT(SYMB, KC_ESC), LT(NUMB, KC_SPC),  TG_LENC,    TG_RENC, LT(ARRW, KC_SPC), KC_RALT, KC_RGUI
+      MT(MOD_LGUI, KC_DEL), LT(SYMB, KC_ESC), LT(NUMB, KC_SPC),  TG_LENC,    TG_RENC, LT(ARRW, KC_SPC), KC_RALT, KC_RGUI
     ),
 /* Symbols layer
  *
  * ,----------------------------------------.             ,-----------------------------------------.
- * |     |  !   |  @   |  {   |  }   |  |   |             |      |      |      |      |      |  \ | |
+ * |  `  |  !   |  @   |  #   |  $   |  %   |             |   ^  |  &   |  *   |  (   |  )   |  \ | |
  * |-----+------+------+------+------+------|             |------+------+------+------+------+------|
- * |     |  #   |  $   |  (   |  )   |  `   |             |   +  |  -   |  /   |  *   |  %   |  ' " |
+ * |     |  `   |      |      |      |      |             |      |  [   |  ]   |  |   |  _   |  +   |
  * |-----+------+------+------+------+------|             |------+------+------+------+------+------|
- * |     |  %   |  ^   |  [   |  ]   |  ~   |             |   &  |  =   |  ,   |  .   |  / ? | - _  |
+ * |     |      |      |      |      |      |             |      |      |      |      |      |      |
  * `-----+------+------+------+------+------'             `------+------+------+------+------+------'
  *             .------.   .------.   .------.  .----.     .------.   .------.   .------.
  *             |      |   |      |   |      |  |    |     |      |   |      |   |      |
@@ -79,21 +80,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Numbers layer
  *
  * ,----------------------------------------.             ,-----------------------------------------.
- * |     |      |  F1  |  F2  |  F3  |  F4  |             |      |  7   |  8   |  9   |      |      |
+ * |  ~  |   1  |  2   |   3  |   4  |   5  |             |  6   |  7   |  8   |  9   |  0   |      |
  * |-----+------+------+------+------+------|             |------+------+------+------+------+------|
- * |     |      |  F5  |  F6  |  F7  |  F8  |             |      |  4   |   5  |  6   |  +   |      |
+ * |     |  F1  |  F2  |  F3  |  F4  |  F5  |             |  F6  |  {   |   }  |  \   |  -   |  =   |
  * |-----+------+------+------+------+------|             |------+------+------+------+------+------|
- * |     |      |  F8  |  F9  |  F11 |  F12 |             |      |  1   |   2  |  3   |  =   |      |
+ * |     | F7   |  F8  |  F9  |  F10 |  F11 |             | F12  |      |      |      |      |      |
  * `-----+------+------+------+------+------'             `------+------+------+------+------+------'
  *             .------.   .------.   .------.  .----.     .------.   .------.   .------.
- *             |      |   |      |   |      |  |    |     |  0   |   |  ,   |   |  .   |
+ *             |      |   |      |   |      |  |    |     | WIN  |   |  ,   |   |  .   |
  *             '------'   '------'   '------'  '----'     '------'   '------'   '------'
  */
 [NUMB] = LAYOUT_labor(
                       KC_TILD, KC_1, 	  KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
                       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6, KC_LCBR, KC_RCBR, KC_BSLS, KC_MINS, KC_EQL, 
                       _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, _______, _______, _______,  _______, _______,
-                      _______, _______, _______, _______,       _______, _______, _______, _______
+                      _______, _______, _______, _______, _______,      KC_RGUI, _______, _______
                       ),
 
 /* Arrows layer
@@ -139,13 +140,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void encoder_left(bool clockwise) {
   if (clockwise) {
     if (alt_enc_left) {
-      tap_code(KC_PGDN);
+      SEND_STRING(SS_LCTRL("d"));
     } else {
       tap_code(KC_DOWN);
     }
   } else {
     if (alt_enc_left) {
-      tap_code(KC_PGUP);
+      SEND_STRING(SS_LCTRL("u"));
     } else {
       tap_code(KC_UP);
     }
@@ -157,7 +158,7 @@ void encoder_right(bool clockwise) {
     if (alt_enc_right) {
       tap_code(KC_VOLU);
     } else {
-      tap_code(KC_W);
+      tap_code(KC_E);
     }
   } else {
     if (alt_enc_right) {
