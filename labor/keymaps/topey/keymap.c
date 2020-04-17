@@ -138,35 +138,46 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 };
 
 void encoder_left(bool clockwise) {
-  if (clockwise) {
-    if (alt_enc_left) {
-      SEND_STRING(SS_LCTRL("d"));
-    } else {
-      tap_code(KC_DOWN);
-    }
-  } else {
-    if (alt_enc_left) {
-      SEND_STRING(SS_LCTRL("u"));
-    } else {
-      tap_code(KC_UP);
-    }
+  if (alt_enc_left) {
+    clockwise ? SEND_STRING(SS_LCTRL("u")) : SEND_STRING(SS_LCTRL("d"));
+    return;
   }
+
+  if (IS_LAYER_ON(NUMB)) {
+    clockwise ? tap_code(KC_VOLD) : tap_code(KC_VOLU);
+    return;
+  }
+
+  if (IS_LAYER_ON(ARRW)) {
+    clockwise ? tap_code(KC_VOLD) : tap_code(KC_VOLU);
+    return;
+  }
+
+  clockwise ? tap_code(KC_DOWN) : tap_code(KC_UP);
 }
 
 void encoder_right(bool clockwise) {
-  if (clockwise) {
-    if (alt_enc_right) {
-      tap_code(KC_VOLU);
-    } else {
-      tap_code(KC_E);
-    }
-  } else {
-    if (alt_enc_right) {
-      tap_code(KC_VOLD);
-    } else {
-      tap_code(KC_B);
-    }
+  if (alt_enc_right) {
+    clockwise ? SEND_STRING(SS_LCTRL("d")) : SEND_STRING(SS_LCTRL("u"));
+    return;
   }
+
+  if (IS_LAYER_ON(NUMB)) {
+    clockwise ? tap_code16(KC_RCBR) : tap_code16(KC_LCBR);
+    return;
+  }
+
+  if (IS_LAYER_ON(SYMB)) {
+    clockwise ? tap_code(KC_E) : tap_code(KC_B);
+    return;
+  }
+
+  if (IS_LAYER_ON(ARRW)) {
+    clockwise ? tap_code(KC_VOLD) : tap_code(KC_VOLU);
+    return;
+  }
+
+  clockwise ? tap_code(KC_DOWN) : tap_code(KC_UP);
 }
 
 void encoder_update_user(uint8_t index, bool clockwise) {
