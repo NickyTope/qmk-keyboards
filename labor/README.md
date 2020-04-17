@@ -11,6 +11,6 @@ Artwork and inspiration from Aesop Rock.
 Fantastic planet urchin putting work in
 Searching for pertinent verse minus the murderous diversion
 Apologies won't lure me to the communal sob story
-Nor will I sacrifice live style to benefit jury temperament
+Nor will I sacrifice life style to benefit jury temperament
 
-| I never understood most of these lyrics when I heard them but that last line always stuck with me. If you belive the annotations from genius.com, he is encouraging himself to stay on track, embrace his differences and be ruthless in doing so.
+| I never understood most of these lyrics when I heard them but that last line always stuck with me. If you believe the annotations from genius.com, he is encouraging himself to stay on track, embrace his differences and be ruthless in doing so.
