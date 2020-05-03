@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *  CTBS = Control (hold), Backspace (tap)
    *  WINDEL = Win (hold), Delete (tap)
    *  SHENT = Shift (hold), Enter (tap)
-   *  SYMESC = Symbols (hold), Esc (tap)
+   *  SYMENT = Symbols (hold), Enter (tap)
    *  NUMSPC = Numbers (hold), Space (tap)
    *  ARWSPC = Arrows (hold), Space (tap)
    * ,----------------------------------------.             ,----------------------------------------.
@@ -49,14 +49,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |SHFT |  Z   |  X   |  C   |  V   |  B   |             |   N  |  M   |  ,   |  .   |  / ? |SHENT|
    * `-----+------+------+------+------+------'             `------+------+------+------+------+-----'
    *             .------.   .------.   .------. .----..----. .------.   .------.   .------.
-   *             |WINDEL|   |SYMESC|   |NUMSPC| | TG || TG | |ARWSPC|   | ALT  |   | WIN  |
+   *             |WINDEL|   |SYMENT|   |NUMSPC| | TG || TG | |ARWSPC|   | ALT  |   | WIN  |
    *             '------'   '------'   '------' '----''----' '------'   '------'   '------'
    */
   [BASE] = LAYOUT_labor(
       KC_ESC,      KC_Q,      KC_W,  KC_E,   KC_R,   KC_T, KC_Y,    KC_U, KC_I, KC_O,   KC_P,    KC_BSPC,
       MT(MOD_LCTL, KC_BSPC),  KC_A,  KC_S,   KC_D,   KC_F, KC_G, KC_H,    KC_J, KC_K, KC_L,   KC_SCLN, KC_QUOT,
       KC_LSFT,     KC_Z,      KC_X,  KC_C,   KC_V,   KC_B, KC_N, KC_M,    KC_COMM, KC_DOT, KC_SLSH, MT(MOD_RSFT, KC_ENT),
-      MT(MOD_LGUI, KC_DEL), LT(SYMB, KC_ESC), LT(NUMB, KC_SPC),  TG_LENC,    TG_RENC, LT(ARRW, KC_SPC), KC_RALT, KC_RGUI
+      MT(MOD_LGUI, KC_DEL), LT(SYMB, KC_ENT), LT(NUMB, KC_SPC),  TG_LENC,    TG_RENC, LT(ARRW, KC_SPC), KC_RALT, KC_RGUI
       ),
 
   /* Symbols layer
@@ -141,45 +141,45 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 void encoder_left(bool clockwise) {
   if (alt_enc_left) {
-    clockwise ? SEND_STRING(SS_LCTRL("u")) : SEND_STRING(SS_LCTRL("d"));
-    return;
-  }
-
-  if (IS_LAYER_ON(NUMB)) {
-    clockwise ? tap_code(KC_VOLD) : tap_code(KC_VOLU);
-    return;
-  }
-
-  if (IS_LAYER_ON(ARRW)) {
-    clockwise ? tap_code(KC_VOLD) : tap_code(KC_VOLU);
-    return;
-  }
-
-  clockwise ? tap_code(KC_DOWN) : tap_code(KC_UP);
-}
-
-void encoder_right(bool clockwise) {
-  if (alt_enc_right) {
     clockwise ? SEND_STRING(SS_LCTRL("d")) : SEND_STRING(SS_LCTRL("u"));
     return;
   }
 
   if (IS_LAYER_ON(NUMB)) {
-    clockwise ? tap_code16(KC_RCBR) : tap_code16(KC_LCBR);
-    return;
-  }
-
-  if (IS_LAYER_ON(SYMB)) {
-    clockwise ? tap_code(KC_E) : tap_code(KC_B);
+    clockwise ? tap_code(KC_VOLU) : tap_code(KC_VOLD);
     return;
   }
 
   if (IS_LAYER_ON(ARRW)) {
-    clockwise ? tap_code(KC_VOLD) : tap_code(KC_VOLU);
+    clockwise ? tap_code(KC_VOLU) : tap_code(KC_VOLD);
     return;
   }
 
-  clockwise ? tap_code(KC_DOWN) : tap_code(KC_UP);
+  clockwise ? tap_code(KC_UP) : tap_code(KC_DOWN);
+}
+
+void encoder_right(bool clockwise) {
+  if (alt_enc_right) {
+    clockwise ? SEND_STRING(SS_LCTRL("u")) : SEND_STRING(SS_LCTRL("d"));
+    return;
+  }
+
+  if (IS_LAYER_ON(NUMB)) {
+    clockwise ? tap_code16(KC_LCBR) : tap_code16(KC_RCBR);
+    return;
+  }
+
+  if (IS_LAYER_ON(SYMB)) {
+    clockwise ? tap_code(KC_B) : tap_code(KC_E);
+    return;
+  }
+
+  if (IS_LAYER_ON(ARRW)) {
+    clockwise ? tap_code(KC_VOLU) : tap_code(KC_VOLD);
+    return;
+  }
+
+  clockwise ? tap_code(KC_UP) : tap_code(KC_DOWN);
 }
 
 void encoder_update_user(uint8_t index, bool clockwise) {
