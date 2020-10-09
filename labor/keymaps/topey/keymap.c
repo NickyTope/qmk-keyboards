@@ -115,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [ARRW] = LAYOUT_labor(
       _______, _______, _______, KC_VOLD, KC_VOLU, _______, _______, KC_HOME, KC_END,  KC_END,  _______, _______,
       _______, _______, _______, KC_MPRV, KC_MNXT, KC_MPLY, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, KC_PGDN, KC_PGUP, _______, _______, _______,
+      _______, _______, _______, KC_BRID, KC_BRIU, _______, _______, KC_PGDN, KC_PGUP, _______, _______, _______,
       _______, _______, _______, _______,         _______, _______, _______, _______
       )
 };
