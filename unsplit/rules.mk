@@ -1,7 +1,7 @@
 
 # MCU name
 MCU = atmega32u4
-BOOTLOADER = caterina
+BOOTLOADER = atmel-dfu
 
 # Build Options
 #   change yes to no to disable

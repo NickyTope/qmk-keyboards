@@ -1,7 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define COMBO_COUNT 2
+#define COMBO_COUNT 3
 #define COMBO_TERM 100
 
 #include "config_common.h"
@@ -9,8 +9,8 @@
 #define PRODUCT_ID      0x6062
 #define DEVICE_VER      0x0002
 #define MANUFACTURER    ntope
-#define PRODUCT         split4060
-#define DESCRIPTION     A split 40 in a 60 case
+#define PRODUCT         unsplit
+#define DESCRIPTION     A conjoined split 40 that fits in a standard 60 case
 
 #define MATRIX_ROWS 8
 #define MATRIX_COLS 6
@@ -21,9 +21,9 @@
 
 #define ENCODERS_PAD_A { F6 }
 #define ENCODERS_PAD_B { F7 }
-#define ENCODER_RESOLUTION 4
+#define ENCODER_RESOLUTION 2
 
-#define DIODE_DIRECTION COL2ROW
+#define DIODE_DIRECTION ROW2COL
 
 #define RGBLED_NUM 0
 

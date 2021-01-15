@@ -18,18 +18,22 @@ enum layers {
 enum combos {
   LCOLON_ENTER,
   DF_TAB,
-};
-
-const uint16_t PROGMEM lc_combo[] = {KC_L, KC_SCLN, COMBO_END};
-const uint16_t PROGMEM df_combo[] = {KC_D, KC_F, COMBO_END};
-
-combo_t key_combos[COMBO_COUNT] = {
-  [LCOLON_ENTER] = COMBO(lc_combo, KC_ENT),
-  [DF_TAB] = COMBO(df_combo, KC_TAB)
+  FAT_ARROW
 };
 
 enum custom_keycodes {
   TG_ENC = SAFE_RANGE
+};
+
+
+const uint16_t PROGMEM lc_combo[] = {KC_L, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM df_combo[] = {KC_D, KC_F, COMBO_END};
+const uint16_t PROGMEM comma_period_combo[] = {KC_COMM, KC_DOT, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+  [LCOLON_ENTER] = COMBO(lc_combo, KC_ENT),
+  [DF_TAB] = COMBO(df_combo, KC_TAB),
+  [FAT_ARROW] = COMBO_ACTION(comma_period_combo)
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -48,13 +52,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |SHFT |  Z   |  X   |  C   |  V   |  B   |    -----    |   N  |  M   |  ,   |  .   |  / ? |SHENT|
    * `-----+------+------+------+------+------'             `------+------+------+------+------+-----'
    *
-   * CTRL                 DEL    WINDEL SYMENT NUMSPC ARWSPC ALT    WIN    RESET
+   * CTRL                 DEL    WINDEL SYMENT NUMSPC ARWSPC ALT    WIN    KP_ENTER             ENTER
    */
-  [BASE] = LAYOUT_4060(
+  [BASE] = LAYOUT_unsplit(
       KC_ESC,      KC_Q,      KC_W,  KC_E,   KC_R,   KC_T, KC_BSPC, KC_Y,    KC_U, KC_I, KC_O,   KC_P,    KC_BSPC,
       MT(MOD_LCTL, KC_BSPC),  KC_A,  KC_S,   KC_D,   KC_F, KC_G, KC_H,    KC_J, KC_K, KC_L,   KC_SCLN, KC_QUOT,
       KC_LSFT,     KC_Z,      KC_X,  KC_C,   KC_V,   KC_B, TG_ENC, KC_N, KC_M,    KC_COMM, KC_DOT, KC_SLSH, MT(MOD_RSFT, KC_ENT),
-      KC_LCTL, KC_DEL, MT(MOD_LGUI, KC_DEL), LT(SYMB, KC_ENT), LT(NUMB, KC_SPC), LT(ARRW, KC_SPC), KC_RALT, KC_RGUI, RESET, KC_ENT
+      KC_LCTL, KC_DEL, MT(MOD_LGUI, KC_DEL), LT(SYMB, KC_ENT), LT(NUMB, KC_SPC), LT(ARRW, KC_SPC), KC_RALT, KC_RGUI, KC_PENT, KC_ENT
       ),
 
   /* Symbols layer
@@ -66,11 +70,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |-----+------+------+------+------+------|             |------+------+------+------+------+------|
    * |     |      |      |      |      |      |             |      |      |      |      |      |      |
    * `-----+------+------+------+------+------'             `------+------+------+------+------+------'
-   *             .------.   .------.   .------.  .----.     .------.   .------.   .------.
-   *             |      |   |      |   |      |  |    |     |      |   |      |   |      |
-   *             '------'   '------'   '------'  '----'     '------'   '------'   '------'
    */
-  [SYMB] = LAYOUT_4060(
+  [SYMB] = LAYOUT_unsplit(
       KC_GRV, KC_EXLM, KC_AT,   KC_HASH, KC_DLR, KC_PERC, _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSLS,
       _______, KC_GRV, _______, _______, _______, _______, _______, KC_LBRC, KC_RBRC, KC_PIPE, KC_UNDS, KC_PLUS,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
@@ -86,11 +87,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |-----+------+------+------+------+------|             |------+------+------+------+------+------|
    * |     | F7   |  F8  |  F9  |  F10 |  F11 |             | F12  |      |      |      |      |      |
    * `-----+------+------+------+------+------'             `------+------+------+------+------+------'
-   *             .------.   .------.   .------.  .----.     .------.   .------.   .------.
-   *             |      |   |      |   |      |  |    |     | WIN  |   |  ,   |   |  .   |
-   *             '------'   '------'   '------'  '----'     '------'   '------'   '------'
+   *
+   *                                                    WIN
+   
    */
-  [NUMB] = LAYOUT_4060(
+  [NUMB] = LAYOUT_unsplit(
       KC_TILD, KC_1, 	  KC_2,    KC_3,    KC_4,    KC_5, _______,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6, KC_LCBR, KC_RCBR, KC_BSLS, KC_MINS, KC_EQL, 
       _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, _______,  KC_F12, _______, _______, _______,  _______, _______,
@@ -106,15 +107,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |-----+------+------+------+------+------|             |------+------+------+------+------+------|
    * |     |      |      | BRID | BRIU |      |             |      | PGDN | PGUP |      |      |      |
    * `-----+------+------+------+------+------'             `------+------+------+------+------+------'
-   *             .------.   .------.   .------.  .----.     .------.   .------.   .------.
-   *             |      |   |      |   |      |  |    |     |      |   |      |   |      |
-   *             '------'   '------'   '------'  '----'     '------'   '------'   '------'
+   *
+   *                                                                       RESET
    */
-  [ARRW] = LAYOUT_4060(
+  [ARRW] = LAYOUT_unsplit(
       _______, _______, _______, KC_VOLD, KC_VOLU, _______, _______, _______, KC_HOME, KC_END,  KC_END,  _______, _______,
       _______, _______, _______, KC_MPRV, KC_MNXT, KC_MPLY, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
       _______, _______, _______, KC_BRID, KC_BRIU, _______, _______, _______, KC_PGDN, KC_PGUP, _______, _______, _______,
-      _______, _______, _______, _______,         _______, _______, _______, _______, _______, _______
+      _______, _______, _______, _______,         _______, _______, _______, _______, RESET, _______
       )
 };
 
@@ -122,29 +122,43 @@ bool alt_enc= false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-  case TG_ENC:
-    if (record->event.pressed) {
-      alt_enc= !alt_enc;
-    }
-    break;
+    case TG_ENC:
+      if (record->event.pressed) {
+        alt_enc= !alt_enc;
+      }
+      break;
   }
   return true;
 };
 
+void process_combo_event(uint16_t combo_index, bool pressed) {
+  switch(combo_index) {
+    case FAT_ARROW:
+      if (pressed) {
+        SEND_STRING("=>");
+      }
+      break;
+  }
+}
 
 void encoder_update_user(uint8_t index, bool clockwise) {
-  if (alt_enc) {
-    clockwise ? SEND_STRING(SS_LCTRL("d")) : SEND_STRING(SS_LCTRL("u"));
+  if (IS_LAYER_ON(NUMB)) {
+    clockwise ? tap_code16(KC_LCBR) : tap_code16(KC_RCBR);
     return;
   }
 
-  if (IS_LAYER_ON(NUMB)) {
-    clockwise ? tap_code(KC_VOLU) : tap_code(KC_VOLD);
+  if (IS_LAYER_ON(SYMB)) {
+    clockwise ? tap_code(KC_B) : tap_code(KC_E);
     return;
   }
 
   if (IS_LAYER_ON(ARRW)) {
     clockwise ? tap_code(KC_VOLU) : tap_code(KC_VOLD);
+    return;
+  }
+
+  if (alt_enc) {
+    clockwise ? SEND_STRING(SS_LCTRL("u")) : SEND_STRING(SS_LCTRL("d"));
     return;
   }
 
