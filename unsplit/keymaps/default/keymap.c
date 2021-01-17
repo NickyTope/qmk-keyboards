@@ -44,12 +44,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *  SYMENT = Symbols (hold), Enter (tap)
    *  NUMSPC = Numbers (hold), Space (tap)
    *  ARWSPC = Arrows (hold), Space (tap)
-   * ,----------------------------------------.   -------   ,----------------------------------------.
-   * | ESC |  Q   |  W   |  E   |  R   |  T   |   |BSPC |   |   Y  |   U  |  I   |  O   |  P   | BSPC|
-   * |-----+------+------+------+------+------|   -------   |------+------+------+------+------+-----|
-   * |CTBS |  A   |  S   |  D   |  F  tab G   |    -----    |   H  |  J   |  K   |  L  ent ;   | ' " |
-   * |-----+------+------+------+------+------|    |   |    |------+------+------+------+------+-----|
-   * |SHFT |  Z   |  X   |  C   |  V   |  B   |    -----    |   N  |  M   |  ,   |  .   |  / ? |SHENT|
+   * ,----------------------------------------.             ,----------------------------------------.
+   * | ESC |  Q   |  W   |  E   |  R   |  T   |     BSPC    |   Y  |   U  |  I   |  O   |  P   | BSPC|
+   * |-----+------+------+------+------+------|             |------+------+------+------+------+-----|
+   * |CTBS |  A   |  S   |  D   |  F  tab G   |    TG_ENC   |   H  |  J   |  K   |  L  ent ;   | ' " |
+   * |-----+------+------+------+------+------|             |------+------+------+------+------+-----|
+   * |SHFT |  Z   |  X   |  C   |  V   |  B   |             |   N  |  M   |  ,   |  .   |  / ? |SHENT|
    * `-----+------+------+------+------+------'             `------+------+------+------+------+-----'
    *
    * CTRL                 DEL    WINDEL SYMENT NUMSPC ARWSPC ALT    WIN    KP_ENTER             ENTER
@@ -70,6 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |-----+------+------+------+------+------|             |------+------+------+------+------+------|
    * |     |      |      |      |      |      |             |      |      |      |      |      |      |
    * `-----+------+------+------+------+------'             `------+------+------+------+------+------'
+   *
    */
   [SYMB] = LAYOUT_unsplit(
       KC_GRV, KC_EXLM, KC_AT,   KC_HASH, KC_DLR, KC_PERC, _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSLS,
@@ -89,7 +90,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-----+------+------+------+------+------'             `------+------+------+------+------+------'
    *
    *                                                    WIN
-   
    */
   [NUMB] = LAYOUT_unsplit(
       KC_TILD, KC_1, 	  KC_2,    KC_3,    KC_4,    KC_5, _______,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
@@ -153,7 +153,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
   }
 
   if (IS_LAYER_ON(ARRW)) {
-    clockwise ? tap_code(KC_VOLU) : tap_code(KC_VOLD);
+    clockwise ? tap_code(KC_VOLD) : tap_code(KC_VOLU);
     return;
   }
 
