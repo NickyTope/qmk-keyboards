@@ -44,21 +44,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *  SYMENT = Symbols (hold), Enter (tap)
    *  NUMSPC = Numbers (hold), Space (tap)
    *  ARWSPC = Arrows (hold), Space (tap)
+   *  WINNUM = Numbers Layer with Win held
    * ,----------------------------------------.             ,----------------------------------------.
-   * | ESC |  Q   |  W   |  E   |  R   |  T   |     BSPC    |   Y  |   U  |  I   |  O   |  P   | BSPC|
+   * | ESC |  Q   |  W   |  E   |  R   |  T   |     S-U     |   Y  |   U  |  I   |  O   |  P   | BSPC|
    * |-----+------+------+------+------+------|             |------+------+------+------+------+-----|
    * |CTBS |  A   |  S   |  D   |  F  tab G   |    TG_ENC   |   H  |  J   |  K   |  L  ent ;   | ' " |
    * |-----+------+------+------+------+------|             |------+------+------+------+------+-----|
    * |SHFT |  Z   |  X   |  C   |  V   |  B   |             |   N  |  M   |  ,   |  .   |  / ? |SHENT|
    * `-----+------+------+------+------+------'             `------+------+------+------+------+-----'
    *
-   * CTRL                 DEL    WINDEL SYMENT NUMSPC ARWSPC ALT    WIN    KP_ENTER             ENTER
+   * CTRL                 DEL    WINDEL SYMENT NUMSPC ARWSPC ALT  WINNUM   KP_ENTER             ENTER
    */
   [BASE] = LAYOUT_unsplit(
-      KC_ESC,      KC_Q,      KC_W,  KC_E,   KC_R,   KC_T, KC_BSPC, KC_Y,    KC_U, KC_I, KC_O,   KC_P,    KC_BSPC,
+      KC_ESC,      KC_Q,      KC_W,  KC_E,   KC_R,   KC_T, G(KC_U), KC_Y,    KC_U, KC_I, KC_O,   KC_P,    KC_BSPC,
       MT(MOD_LCTL, KC_BSPC),  KC_A,  KC_S,   KC_D,   KC_F, KC_G, KC_H,    KC_J, KC_K, KC_L,   KC_SCLN, KC_QUOT,
       KC_LSFT,     KC_Z,      KC_X,  KC_C,   KC_V,   KC_B, TG_ENC, KC_N, KC_M,    KC_COMM, KC_DOT, KC_SLSH, MT(MOD_RSFT, KC_ENT),
-      KC_LCTL, KC_DEL, MT(MOD_LGUI, KC_DEL), LT(SYMB, KC_ENT), LT(NUMB, KC_SPC), LT(ARRW, KC_SPC), KC_RALT, KC_RGUI, KC_PENT, KC_ENT
+      KC_LCTL, KC_DEL, MT(MOD_LGUI, KC_DEL), LT(SYMB, KC_ENT), LT(NUMB, KC_SPC), LT(ARRW, KC_SPC), KC_RALT, LM(NUMB, MOD_RGUI), KC_PENT, KC_ENT
       ),
 
   /* Symbols layer
