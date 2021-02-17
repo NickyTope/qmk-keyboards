@@ -41,6 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *  SYMENT = Symbols (hold), Enter (tap)
    *  NUMSPC = Numbers (hold), Space (tap)
    *  ARWSPC = Arrows (hold), Space (tap)
+   *  WINNUM = Numbers Layer with Win held
    * ,----------------------------------------.             ,----------------------------------------.
    * | ESC |  Q   |  W   |  E   |  R   |  T   |             |   Y  |   U  |  I   |  O   |  P   | BSPC|
    * |-----+------+------+------+------+------|             |------+------+------+------+------+-----|
@@ -49,14 +50,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |SHFT |  Z   |  X   |  C   |  V   |  B   |             |   N  |  M   |  ,   |  .   |  / ? |SHENT|
    * `-----+------+------+------+------+------'             `------+------+------+------+------+-----'
    *             .------.   .------.   .------. .----..----. .------.   .------.   .------.
-   *             |WINDEL|   |SYMENT|   |NUMSPC| | TG || TG | |ARWSPC|   | ALT  |   | WIN  |
+   *             |WINDEL|   |SYMENT|   |NUMSPC| | TG || TG | |ARWSPC|   | ALT  |   |WINNUM|
    *             '------'   '------'   '------' '----''----' '------'   '------'   '------'
    */
   [BASE] = LAYOUT_labor(
       KC_ESC,      KC_Q,      KC_W,  KC_E,   KC_R,   KC_T, KC_Y,    KC_U, KC_I, KC_O,   KC_P,    KC_BSPC,
       MT(MOD_LCTL, KC_BSPC),  KC_A,  KC_S,   KC_D,   KC_F, KC_G, KC_H,    KC_J, KC_K, KC_L,   KC_SCLN, KC_QUOT,
       KC_LSFT,     KC_Z,      KC_X,  KC_C,   KC_V,   KC_B, KC_N, KC_M,    KC_COMM, KC_DOT, KC_SLSH, MT(MOD_RSFT, KC_ENT),
-      MT(MOD_LGUI, KC_DEL), LT(SYMB, KC_ENT), LT(NUMB, KC_SPC),  TG_LENC,    TG_RENC, LT(ARRW, KC_SPC), KC_RALT, KC_RGUI
+      MT(MOD_LGUI, KC_DEL), LT(SYMB, KC_ENT), LT(NUMB, KC_SPC),  TG_LENC,    TG_RENC, LT(ARRW, KC_SPC), KC_RALT, LM(NUMB, MOD_RGUI)
       ),
 
   /* Symbols layer
