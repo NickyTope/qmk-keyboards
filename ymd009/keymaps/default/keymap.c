@@ -55,8 +55,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
       break;
     case C_LAYER_SWITCH:
       if (pressed) {
-        layer_clear();
-        layer_on(ARRW);
+        layer_move(ARRW);
       }
       break;
   }
