@@ -25,6 +25,9 @@
 
 #define DIODE_DIRECTION ROW2COL
 
-#define RGBLED_NUM 0
+#define RGB_DI_PIN B1
+#define RGBLED_NUM 10
+#define RGBLIGHT_ANIMATIONS
+#define RGBLIGHT_LED_MAP { 0, 1, 5, 4, 2, 3, 6, 7, 8, 9 }
 
 #endif

@@ -13,18 +13,22 @@ enum layers {
   SYMB,
   NUMB,
   ARRW,
+  LGHT,
 };
 
 enum combos {
   LCOLON_ENTER,
   DF_TAB,
-  FAT_ARROW
+  FAT_ARROW,
 };
 
 enum custom_keycodes {
   TG_ENC = SAFE_RANGE
 };
 
+//void keyboard_post_init_user(void) {
+  //rgblight_mode(RGBLIGHT_MODE_RAINBOW_SWIRL);
+//}
 
 const uint16_t PROGMEM lc_combo[] = {KC_L, KC_SCLN, COMBO_END};
 const uint16_t PROGMEM df_combo[] = {KC_D, KC_F, COMBO_END};
@@ -53,13 +57,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |SHFT |  Z   |  X   |  C   |  V   |  B   |             |   N  |  M   |  ,   |  .   |  / ? |SHENT|
    * `-----+------+------+------+------+------'             `------+------+------+------+------+-----'
    *
-   * CTRL                 DEL    WINDEL SYMENT NUMSPC ARWSPC ALT  WINNUM   KP_ENTER             ENTER
+   * CTRL                 DEL    WINDEL SYMENT NUMSPC ARWSPC ALT  WINNUM   LIGHTS               ENTER
    */
   [BASE] = LAYOUT_unsplit(
       KC_ESC,      KC_Q,      KC_W,  KC_E,   KC_R,   KC_T, G(KC_U), KC_Y,    KC_U, KC_I, KC_O,   KC_P,    KC_BSPC,
       MT(MOD_LCTL, KC_BSPC),  KC_A,  KC_S,   KC_D,   KC_F, KC_G, KC_H,    KC_J, KC_K, KC_L,   KC_SCLN, KC_QUOT,
       KC_LSFT,     KC_Z,      KC_X,  KC_C,   KC_V,   KC_B, TG_ENC, KC_N, KC_M,    KC_COMM, KC_DOT, KC_SLSH, MT(MOD_RSFT, KC_ENT),
-      KC_LCTL, KC_DEL, MT(MOD_LGUI, KC_DEL), LT(SYMB, KC_ENT), LT(NUMB, KC_SPC), LT(ARRW, KC_SPC), KC_RALT, LM(NUMB, MOD_RGUI), KC_PENT, KC_ENT
+      KC_LCTL, KC_DEL, MT(MOD_LGUI, KC_DEL), LT(SYMB, KC_ENT), LT(NUMB, KC_SPC), LT(ARRW, KC_SPC), KC_RALT, LM(NUMB, MOD_RGUI), MO(LGHT), KC_ENT
       ),
 
   /* Symbols layer
@@ -109,13 +113,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |     |      |      | BRID | BRIU |      |             |      | PGDN | PGUP |      |      |      |
    * `-----+------+------+------+------+------'             `------+------+------+------+------+------'
    *
-   *                                                                       RESET
+   *                                                                       
    */
   [ARRW] = LAYOUT_unsplit(
       _______, _______, _______, KC_VOLD, KC_VOLU, _______, _______, _______, KC_HOME, KC_END,  KC_END,  _______, _______,
       _______, _______, _______, KC_MPRV, KC_MNXT, KC_MPLY, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
       _______, _______, _______, KC_BRID, KC_BRIU, _______, _______, _______, KC_PGDN, KC_PGUP, _______, _______, _______,
-      _______, _______, _______, _______,         _______, _______, _______, _______, RESET, _______
+      _______, _______, _______, _______,         _______, _______, _______, _______, _______, _______
+      ),
+
+  /* Lights layer
+   *
+   * ,----------------------------------------.             ,-----------------------------------------.
+   * |     |      |      | HUI  | SAI  | VAI  |             |      |      |      |      |      |      |
+   * |-----+------+------+------+------+------|             |------+------+------+------+------+------|
+   * |     |      |      | HUD  | SAD  | VAD  |             |      |      |      |      |      |      |
+   * |-----+------+------+------+------+------|             |------+------+------+------+------+------|
+   * |     |      |      | TOGG | MODE | MODR |             |      |      |      |      |      |      |
+   * `-----+------+------+------+------+------'             `------+------+------+------+------+------'
+   *
+   * RESET                                                                        
+   */
+  [LGHT] = LAYOUT_unsplit(
+      _______, _______, _______, RGB_HUI, RGB_SAI, RGB_VAI, _______, _______, _______, _______, _______,  _______, _______,
+      _______, _______, _______, RGB_HUD, RGB_SAD, RGB_VAD, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, RGB_TOG, RGB_MOD, RGB_RMOD,_______, _______, _______, _______, _______, _______, _______,
+      RESET,  _______, _______, _______,         _______, _______, _______, _______, _______, _______
       )
 };
 

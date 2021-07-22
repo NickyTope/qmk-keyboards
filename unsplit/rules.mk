@@ -23,4 +23,4 @@ AUDIO_ENABLE = no           # Audio output on port C6
 ENCODER_ENABLE = yes
 COMBO_ENABLE = yes
 
-RGBLIGHT_ENABLE = no
+RGBLIGHT_ENABLE = yes
