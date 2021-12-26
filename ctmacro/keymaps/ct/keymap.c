@@ -18,6 +18,17 @@ enum custom_keycodes {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+  /* Layer One
+   *        ,-----.
+   *        | ESC |
+   *        |-----|
+   *        | TAB |
+   *        |-----|
+   *   SC UP| CTL |
+   *    (  )|-----|  * Press encodes to toggle between mouse scroll / up & down
+   *   SC DN| ENT |  * Tap for Enter, hold for Layer Two
+   *        `-----'
+   */
   [ONE] = LAYOUT_ct(
       KC_ESC,
       KC_TAB,
@@ -26,6 +37,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       LT(TWO, KC_ENT)
     ),
 
+  /* Layer Two
+   *        ,-----.
+   *        |  UP |
+   *        |-----|
+   *        |  -> |
+   *        |-----|
+   *  VOL UP| DWN |
+   *    (  )|-----|
+   *  VOL DN|     |
+   *        `-----'
+   */
   [TWO] = LAYOUT_ct(
       KC_UP,
       KC_RIGHT,
