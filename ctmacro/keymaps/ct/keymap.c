@@ -25,7 +25,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *        | TAB |
    *        |-----|
    *   SC UP| CTL |
-   *    (  )|-----|  * Press encodes to toggle between mouse scroll / up & down
+   *    (  )|-----|  * Press encoder to toggle between mouse scroll / up & down
    *   SC DN| ENT |  * Tap for Enter, hold for Layer Two
    *        `-----'
    */
