@@ -18,14 +18,17 @@ enum layers {
 enum combos {
   LCOLON_ENTER,
   DF_TAB,
+  FAT_ARROW,
 };
 
 const uint16_t PROGMEM lc_combo[] = {KC_L, KC_SCLN, COMBO_END};
 const uint16_t PROGMEM df_combo[] = {KC_D, KC_F, COMBO_END};
+const uint16_t PROGMEM comma_period_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [LCOLON_ENTER] = COMBO(lc_combo, KC_ENT),
-  [DF_TAB] = COMBO(df_combo, KC_TAB)
+  [DF_TAB] = COMBO(df_combo, KC_TAB),
+  [FAT_ARROW] = COMBO_ACTION(comma_period_combo)
 };
 
 enum custom_keycodes {
@@ -140,6 +143,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 };
 
+void process_combo_event(uint16_t combo_index, bool pressed) {
+  switch(combo_index) {
+    case FAT_ARROW:
+      if (pressed) {
+        SEND_STRING("=>");
+      }
+      break;
+  }
+}
+
 void encoder_left(bool clockwise) {
   if (alt_enc_left) {
     clockwise ? SEND_STRING(SS_LCTRL("d")) : SEND_STRING(SS_LCTRL("u"));
@@ -183,11 +196,14 @@ void encoder_right(bool clockwise) {
   clockwise ? tap_code(KC_UP) : tap_code(KC_DOWN);
 }
 
-void encoder_update_user(uint8_t index, bool clockwise) {
+bool encoder_update_user(uint8_t index, bool clockwise) {
   if (index == 0) {
     encoder_left(clockwise);
+    return true;
   }
   if (index == 1) {
     encoder_right(clockwise);
+    return true;
   }
+  return false;
 }

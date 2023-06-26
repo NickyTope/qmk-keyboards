@@ -20,6 +20,7 @@ enum combos {
   LCOLON_ENTER,
   DF_TAB,
   FAT_ARROW,
+  CAPW,
 };
 
 enum custom_keycodes {
@@ -30,14 +31,16 @@ enum custom_keycodes {
   //rgblight_mode(RGBLIGHT_MODE_RAINBOW_SWIRL);
 //}
 
-const uint16_t PROGMEM lc_combo[] = {KC_L, KC_SCLN, COMBO_END};
-const uint16_t PROGMEM df_combo[] = {KC_D, KC_F, COMBO_END};
+const uint16_t PROGMEM lc_combo[] = {MT(MOD_RCTL, KC_L), MT(MOD_RSFT, KC_SCLN), COMBO_END};
+const uint16_t PROGMEM df_combo[] = {MT(MOD_LALT, KC_D), MT(MOD_LGUI, KC_F), COMBO_END};
 const uint16_t PROGMEM comma_period_combo[] = {KC_COMM, KC_DOT, COMBO_END};
+const uint16_t PROGMEM caps_word_combo[] = {MT(MOD_LGUI, KC_F), MT(MOD_RGUI, KC_J), COMBO_END};
 
-combo_t key_combos[COMBO_COUNT] = {
+combo_t key_combos[] = {
   [LCOLON_ENTER] = COMBO(lc_combo, KC_ENT),
   [DF_TAB] = COMBO(df_combo, KC_TAB),
-  [FAT_ARROW] = COMBO_ACTION(comma_period_combo)
+  [FAT_ARROW] = COMBO_ACTION(comma_period_combo),
+  [CAPW] = COMBO(caps_word_combo, QK_CAPS_WORD_TOGGLE),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -61,9 +64,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
   [BASE] = LAYOUT_unsplit(
       KC_ESC,      KC_Q,      KC_W,  KC_E,   KC_R,   KC_T, G(KC_U), KC_Y,    KC_U, KC_I, KC_O,   KC_P,    KC_BSPC,
-      MT(MOD_LCTL, KC_BSPC),  KC_A,  KC_S,   KC_D,   KC_F, KC_G, KC_H,    KC_J, KC_K, KC_L,   KC_SCLN, KC_QUOT,
+      MT(MOD_LCTL, KC_BSPC),  MT(MOD_LSFT, KC_A),  MT(MOD_LCTL, KC_S),   MT(MOD_LALT, KC_D),   MT(MOD_LGUI, KC_F), KC_G, KC_H,    MT(MOD_RGUI, KC_J), MT(MOD_RALT, KC_K), MT(MOD_RCTL, KC_L),   MT(MOD_RSFT, KC_SCLN), MT(MOD_RCTL, KC_QUOT),
       KC_LSFT,     KC_Z,      KC_X,  KC_C,   KC_V,   KC_B, TG_ENC, KC_N, KC_M,    KC_COMM, KC_DOT, KC_SLSH, MT(MOD_RSFT, KC_ENT),
-      KC_LCTL, KC_DEL, MT(MOD_LGUI, KC_DEL), LT(SYMB, KC_ENT), LT(NUMB, KC_SPC), LT(ARRW, KC_SPC), KC_RALT, LM(NUMB, MOD_RGUI), MO(LGHT), KC_ENT
+      KC_LCTL, KC_DEL, MT(MOD_LGUI, KC_DEL), LT(SYMB, KC_ENT), LT(NUMB, KC_SPC), LT(ARRW, KC_SPC), KC_RALT, LM(NUMB, MOD_LGUI), MO(LGHT), KC_ENT
       ),
 
   /* Symbols layer
@@ -138,7 +141,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, RGB_HUI, RGB_SAI, RGB_VAI, _______, _______, _______, _______, _______,  _______, _______,
       _______, _______, _______, RGB_HUD, RGB_SAD, RGB_VAD, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, RGB_TOG, RGB_MOD, RGB_RMOD,_______, _______, _______, _______, _______, _______, _______,
-      RESET,  _______, _______, _______,         _______, _______, _______, _______, _______, _______
+      QK_BOOT,  _______, _______, _______,         _______, _______, _______, _______, _______, _______
       )
 };
 
@@ -182,7 +185,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
   }
 
   if (alt_enc) {
-    clockwise ? SEND_STRING(SS_LCTRL("u")) : SEND_STRING(SS_LCTRL("d"));
+    clockwise ? SEND_STRING(SS_LCTL("u")) : SEND_STRING(SS_LCTL("d"));
     return true;
   }
 

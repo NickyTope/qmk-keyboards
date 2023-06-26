@@ -1,10 +1,9 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define COMBO_COUNT 2
+#define COMBO_COUNT 4
 #define COMBO_TERM 100
 
-#include "config_common.h"
 #define VENDOR_ID       0xFEED
 #define PRODUCT_ID      0x6062
 #define DEVICE_VER      0x0002
