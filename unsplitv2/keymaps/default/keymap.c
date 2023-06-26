@@ -171,24 +171,24 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 bool encoder_update_user(uint8_t index, bool clockwise) {
   if (IS_LAYER_ON(NUMB)) {
     clockwise ? tap_code16(KC_LCBR) : tap_code16(KC_RCBR);
-    return true;
+    return false;
   }
 
   if (IS_LAYER_ON(SYMB)) {
     clockwise ? tap_code(KC_B) : tap_code(KC_E);
-    return true;
+    return false;
   }
 
   if (IS_LAYER_ON(ARRW)) {
     clockwise ? tap_code(KC_VOLD) : tap_code(KC_VOLU);
-    return true;
+    return false;
   }
 
   if (alt_enc) {
     clockwise ? SEND_STRING(SS_LCTL("u")) : SEND_STRING(SS_LCTL("d"));
-    return true;
+    return false;
   }
 
   clockwise ? tap_code(KC_UP) : tap_code(KC_DOWN);
-  return true;
+  return false;
 }
