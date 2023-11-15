@@ -60,13 +60,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |SHFT |  Z   |  X   |  C   |  V   |  B   |             |   N  |  M   |  ,   |  .   |  / ? |SHENT|
    * `-----+------+------+------+------+------'             `------+------+------+------+------+-----'
    *
-   * CTRL                 DEL    WINDEL SYMENT NUMSPC ARWSPC ALT  WINNUM   LIGHTS               ENTER
+   * CTRL                 DEL    WINDEL SYMESC NUMENT ARWSPC ALT  WINNUM   LIGHTS               ENTER
    */
   [BASE] = LAYOUT_unsplit(
       KC_ESC,      KC_Q,      KC_W,  KC_E,   KC_R,   KC_T, G(KC_U), KC_Y,    KC_U, KC_I, KC_O,   KC_P,    KC_BSPC,
       MT(MOD_LCTL, KC_BSPC),  MT(MOD_LSFT, KC_A),  MT(MOD_LCTL, KC_S),   MT(MOD_LALT, KC_D),   MT(MOD_LGUI, KC_F), KC_G, KC_H,    MT(MOD_RGUI, KC_J), MT(MOD_RALT, KC_K), MT(MOD_RCTL, KC_L),   MT(MOD_RSFT, KC_SCLN), MT(MOD_RCTL, KC_QUOT),
       KC_LSFT,     KC_Z,      KC_X,  KC_C,   KC_V,   KC_B, TG_ENC, KC_N, KC_M,    KC_COMM, KC_DOT, KC_SLSH, MT(MOD_RSFT, KC_ENT),
-      KC_LCTL, KC_DEL, MT(MOD_LGUI, KC_DEL), LT(SYMB, KC_ENT), LT(NUMB, KC_SPC), LT(ARRW, KC_SPC), KC_RALT, LM(NUMB, MOD_LGUI), MO(LGHT), KC_ENT
+      KC_LCTL, KC_DEL, MT(MOD_LGUI, KC_DEL), LT(SYMB, KC_ESC), LT(NUMB, KC_ENT), LT(ARRW, KC_SPC), KC_RALT, LM(NUMB, MOD_LGUI), MO(LGHT), KC_ENT
       ),
 
   /* Symbols layer
