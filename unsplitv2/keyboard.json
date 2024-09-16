@@ -3,6 +3,8 @@
   "manufacturer": "ntope",
   "url": "",
   "maintainer": "NickyTope",
+  "processor": "atmega32u4",
+  "bootloader": "caterina",
   "usb": {
     "vid": "0xFEED",
     "pid": "0x6062",
@@ -22,7 +24,6 @@
     "rotary": [{ "pin_a": "F6", "pin_b": "F5" }]
   },
   "diode_direction": "ROW2COL",
-  "processor": "atmega32u4",
   "layouts": {
     "LAYOUT_unsplit": {
       "layout": [
